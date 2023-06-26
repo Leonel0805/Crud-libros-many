@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Libros {% endblock %}
+
+{% block content %} 
+
+    <h1>Libros</h1>
+
+    {% for libro in libros %}
+
+        <ul>
+            <li>{{libro.titulo}}
+                {% for autor in libro.autor.all %} 
+                    {{autor.nombre}} 
+                {% endfor %}   
+         
+            </li>
+
+            <form action="{% url 'edit_libro' libro.id %}" method="GET">
+
+                {% csrf_token %}
+                <button>Editar</button>
+
+            </form>
+
+            <form action="{% url 'eliminar_libro' libro.id %}" method="GET">
+
+                {% csrf_token %}
+                <button>Eliminar</button>
+
+            </form>
+
+        </ul>
+    {% endfor %}
+
+
+    <form action="{% url 'crear_libro' %}" method="GET">
+        {% csrf_token %}
+
+        <button>AGREGAR</button>
+    </form>
+
+{% endblock %}

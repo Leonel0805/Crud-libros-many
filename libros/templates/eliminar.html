@@ -1,0 +1,13 @@
+<h1>Esta seguro que desea eliminar?</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button>Si, eliminar</button>
+</form>
+
+<form action="{% url 'libros' %}">
+
+    {% csrf_token %}
+
+    <button>No, no quiero eliminar</button>
+</form>
